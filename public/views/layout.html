@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/styles/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/styles/site.css">
+	</head>
+	<body>
+		<div class="container">
+		    <div class="header">
+				<h3 class="text-muted"> File sharing with webRTC </h3>
+			</div>
+
+		    <div class="row">
+		        <div class="col-md-6">
+		            <div ng-include="'/views/home/share.html'"></div>
+		        </div>
+		        <div class="col-md-6">
+		            <div ng-include="'/views/home/download.html'"></div>
+		        </div>
+		    </div>
+
+		    <hr>
+
+		    <footer>
+		        <p>© Karaxuna 2014</p>
+		    </footer>
+		</div>
+
+		<!-- libs -->
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/scripts/async.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.js"></script>
+		<script type="text/javascript" src="/scripts/utils.js"></script>
+		<script type="text/javascript" src="/scripts/RTC.js"></script>
+		<script type="text/javascript" src="/scripts/angular/angular.js"></script>
+
+		<!-- local modules -->
+		<script type="text/javascript" src="/app.js"></script>
+
+		<!-- controllers -->
+		<script type="text/javascript" src="/controllers/downloadCtrl.js"></script>
+		<script type="text/javascript" src="/controllers/shareCtrl.js"></script>
+
+		<!-- services -->
+		<script type="text/javascript" src="/services/socketSrvc.js"></script>
+		<script type="text/javascript" src="/services/peerSrvc.js"></script>
+
+		<!-- directives -->
+		<script type="text/javascript" src="/directives/file/file.js"></script>
+	</body>
+</html>
