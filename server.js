@@ -13,14 +13,17 @@ app.get('/*', function(req, res){
 });
 
 
-
 var sockets = {};
 
 io.sockets.on('connection', function(socket) {
 	sockets[socket.id] = socket;
 
     socket.on('rtcdata', function(data) {
-        sockets[data.to].emit('rtcdata', { from: socket.id, type: data.type, data: data.data });
+        var st = sockets[data.to];
+        if(st)
+            st.emit('rtcdata', { from: socket.id, type: data.type, data: data.data });
+        else
+            socket.emit('error', { message: 'socket does not exist' });
     });
 
     socket.on('disconnect', function(){
