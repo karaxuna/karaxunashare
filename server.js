@@ -4,7 +4,7 @@ var express = require('express'),
     io = require('socket.io').listen(server);
 
 io.set('transports', ['xhr-polling']);
-server.listen(process.env.PORT || 80);
+server.listen(process.env.PORT || 8081);
 
 app.use(express.static(__dirname + '/public'));
 

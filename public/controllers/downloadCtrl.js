@@ -28,10 +28,13 @@ angular.module('app.controllers').controller('downloadCtrl', ['$scope', 'socketS
 						var blob = new Blob([arraybuffer], {type: 'application/octet-binary'});
 						var url = URL.createObjectURL(blob);
 
+						// download blob
 						var a = document.createElement('a');
 						a.download = file.name;
 						a.href = url;
+						document.body.appendChild(a);
 						a.click();
+						a.parentNode.removeChild(a);
 					});
 				});
 			});
