@@ -15,6 +15,7 @@ angular.module('app.controllers').controller('downloadCtrl', ['$scope', 'socketS
 				scope.files = e.data.files.map(function(file){
 					file.owner = e.from;
 					file.downloaded = 0;
+					file.data = null;
 					return file;
 				});
 			});
@@ -28,28 +29,26 @@ angular.module('app.controllers').controller('downloadCtrl', ['$scope', 'socketS
 
 					con.on('data', function(arraybuffer){
 						buffers.push(arraybuffer);
-						scope.$apply();
-						file.downloaded += arraybuffer.byteLength;
-
-						if(file.downloaded === file.size){
-							var blob = new Blob(buffers, { type: 'application/octet-binary' });
-							downloadBlob(blob, file.name);
-						}
+						scope.$apply(function(){
+							file.downloaded += arraybuffer.byteLength;
+							
+							if(file.downloaded === file.size)
+								file.data = new Blob(buffers, { type: 'application/octet-binary' });
+						});
 					});
 				});
 			});
 		};
 
-		function downloadBlob(blob, name){
-			// download blob
-			var url = URL.createObjectURL(blob);
+		scope.save = function (file){
+			var url = URL.createObjectURL(file.data);
 			var a = document.createElement('a');
-			a.download = name;
+			a.download = file.name;
 			a.href = url;
 			document.body.appendChild(a);
 			a.click();
 			a.parentNode.removeChild(a);
-		}
+		};
 
 	}
 ]);

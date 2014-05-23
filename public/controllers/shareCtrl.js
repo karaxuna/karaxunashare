@@ -2,7 +2,7 @@ angular.module('app.controllers').controller('shareCtrl', ['$scope', 'socketSrvc
 	function(scope, socketSrvc, peerSrvc){
 
 		scope.files = [];
-		scope.bpi = 50000; // bytes per interval
+		scope.bpi = 1024 * 30; // 30kb per interval
 		scope.interval = 1000; // 1 second
 
 		peerSrvc.peer.provider.on('info:request', function(e){

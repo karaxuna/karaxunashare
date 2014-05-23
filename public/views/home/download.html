@@ -20,8 +20,13 @@
 			<td ng-bind="file.name"></td>
 			<td ng-bind="file.size"></td>
 			<td style="width: 200px;">
-				<a ng-show="!file.downloaded" href="javascript:void(0);" ng-click="download(file);"> download </a>
-				<div ng-show="file.downloaded" class="progress" style="margin-bottom: 0;">
+				<a ng-if="!file.downloaded" href="javascript:void(0);" ng-click="download(file);">
+					download
+				</a>
+				<a ng-if="file.data" href="javascript:void(0);" ng-click="save(file);">
+					save
+				</a>
+				<div ng-if="file.downloaded && !file.data" class="progress" style="margin-bottom: 0;">
 					<div
 						class="progress-bar progress-bar-info"
 						ng-style="{ 'width': file.downloaded / file.size * 100 + '%' }">
