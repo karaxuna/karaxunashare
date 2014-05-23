@@ -19,8 +19,14 @@
 		<tr ng-repeat="file in files">
 			<td ng-bind="file.name"></td>
 			<td ng-bind="file.size"></td>
-			<td>
-				<a href="javascript:void(0);" ng-click="download(file);"> download </a>
+			<td style="width: 200px;">
+				<a ng-show="!file.downloaded" href="javascript:void(0);" ng-click="download(file);"> download </a>
+				<div ng-show="file.downloaded" class="progress" style="margin-bottom: 0;">
+					<div
+						class="progress-bar progress-bar-info"
+						ng-style="{ 'width': file.downloaded / file.size * 100 + '%' }">
+					</div>
+				</div>
 			</td>
 		</tr>
 	</table>
