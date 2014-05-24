@@ -386,7 +386,6 @@
             });
 
             pc.createDataChannel('dataChannel').addEventListener('message', function(e){
-                console.log('data received: ', e.data);
                 self.trigger('data', e.data);
             });
 
