@@ -1,5 +1,5 @@
 var express = require('express'),
-	app = express(),
+    app = express(),
     server = require('http').createServer(app),
     io = require('socket.io').listen(server);
 
@@ -9,14 +9,14 @@ server.listen(process.env.PORT || 8081);
 app.use(express.static(__dirname + '/public'));
 
 app.get('/*', function(req, res){
-	res.sendfile(__dirname + '/public/views/layout.html');
+    res.sendfile(__dirname + '/public/views/layout.html');
 });
 
 
 var sockets = {};
 
 io.sockets.on('connection', function(socket) {
-	sockets[socket.id] = socket;
+    sockets[socket.id] = socket;
 
     socket.on('rtcdata', function(data) {
         var st = sockets[data.to];
